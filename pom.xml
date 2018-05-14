@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yh</groupId>
+    <artifactId>http.restful</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>http.restful</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+        <!-- JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+
+        <!-- slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>http.restful</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- 设置JDK版本 -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mvn.jdbc.mysql.Driver>com.mysql.jdbc.Driver</mvn.jdbc.mysql.Driver>
+                <mvn.jdbc.mysql.url>jdbc:mysql://localhost:3306/yanhuan?unicode=utf8</mvn.jdbc.mysql.url>
+                <mvn.jdbc.mysql.username>root</mvn.jdbc.mysql.username>
+                <mvn.jdbc.mysql.password>123456</mvn.jdbc.mysql.password>
+                <mvn.log.business.level>DEBUG</mvn.log.business.level>
+                <mvn.log.lib.level>DEBUG</mvn.log.lib.level>
+                <mvn.app.name>http.restful</mvn.app.name>
+                <mvn.domain>http.restful</mvn.domain>
+            </properties>
+        </profile>
+
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mvn.jdbc.mysql.Driver>com.mysql.jdbc.Driver</mvn.jdbc.mysql.Driver>
+                <mvn.jdbc.mysql.url>jdbc:mysql://localhost:3306/yanhuan?unicode=utf8</mvn.jdbc.mysql.url>
+                <mvn.jdbc.mysql.username>root</mvn.jdbc.mysql.username>
+                <mvn.jdbc.mysql.password>123456</mvn.jdbc.mysql.password>
+                <mvn.log.business.level>DEBUG</mvn.log.business.level>
+                <mvn.log.lib.level>DEBUG</mvn.log.lib.level>
+                <mvn.app.name>http.restful</mvn.app.name>
+                <mvn.domain>http.restful</mvn.domain>
+            </properties>
+        </profile>
+
+        <!-- 生产环境 -->
+        <profile>
+            <id>product</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mvn.jdbc.mysql.Driver>com.mysql.jdbc.Driver</mvn.jdbc.mysql.Driver>
+                <mvn.jdbc.mysql.url>jdbc:mysql://localhost:3306/yanhuan?unicode=utf8</mvn.jdbc.mysql.url>
+                <mvn.jdbc.mysql.username>root</mvn.jdbc.mysql.username>
+                <mvn.jdbc.mysql.password>123456</mvn.jdbc.mysql.password>
+                <mvn.log.business.level>DEBUG</mvn.log.business.level>
+                <mvn.log.lib.level>DEBUG</mvn.log.lib.level>
+                <mvn.app.name>http.restful</mvn.app.name>
+                <mvn.domain>http.restful</mvn.domain>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>
